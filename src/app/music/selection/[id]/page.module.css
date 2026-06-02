@@ -1,0 +1,57 @@
+.container {
+  padding: 20px 40px 20px 111px;
+  background: #0a0a0a;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 64px;
+  line-height: 72px;
+  letter-spacing: -0.8px;
+  margin-bottom: 45px;
+  color: #ffffff;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.playlistTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.col01, .col02, .col03, .col04 {
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 2px;
+  color: #696969;
+  text-transform: uppercase;
+}
+
+.col01 { width: 447px; }
+.col02 { width: 321px; }
+.col03 { width: 245px; }
+.col04 { width: 60px; text-align: end; }
+
+.watchIcon {
+  width: 12px;
+  height: 12px;
+  fill: transparent;
+  stroke: #696969;
+}
+
+.loader, .error {
+  text-align: center;
+  padding: 40px;
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.error {
+  color: #ff6b6b;
+}

@@ -1,0 +1,24 @@
+.content__playlist {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.content__playlist {
+   max-height: 400px;      
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: none;  
+}
+
+.content__playlist::-webkit-scrollbar {
+  display: none; 
+}
+
+.noTracks {
+  text-align: center;
+  color: #b3b3b3;
+  padding: 40px;
+  font-size: 18px;
+}
