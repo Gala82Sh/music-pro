@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { fetchTracks, fetchLikedTracks } from '@/store/features/trackSlice';
 import CenterBlock from '@/components/CenterBlock/CenterBlock';
-import { tracksApi as tracks } from '../../data/tracks-api';
+import { tracks } from '../../data/tracks';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import styles from './MainContent.module.css';
