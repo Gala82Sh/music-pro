@@ -93,9 +93,12 @@ export default function PlayerBar() {
     dispatch(setIsPlaying(true));
   };
 
-
+ 
   useEffect(() => {
     if (!audioRef.current || !currentTrack) return;
+
+  
+    audioRef.current.volume = volume / 100;
 
     const isNewTrack = audioRef.current.src !== currentTrack.track_file;
 
@@ -125,13 +128,7 @@ export default function PlayerBar() {
         audioRef.current.pause();
       }
     }
-  }, [currentTrack, isPlaying, dispatch]);
-
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = volume / 100;
-    }
-  }, [volume]);
+  }, [currentTrack, isPlaying, volume, dispatch]);
 
   const handleAudioError = () => {
     setAudioError(true);
