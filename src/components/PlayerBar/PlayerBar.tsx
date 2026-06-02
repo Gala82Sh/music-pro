@@ -95,9 +95,12 @@ export default function PlayerBar() {
 
 
   useEffect(() => {
-    if (currentTrack && audioRef.current) {
+    if (!audioRef.current || !currentTrack) return;
+
+    const isNewTrack = audioRef.current.src !== currentTrack.track_file;
+
+    if (isNewTrack) {
       audioRef.current.src = currentTrack.track_file;
-      
       const playPromise = audioRef.current.play();
       if (playPromise !== undefined) {
         playPromise
@@ -109,25 +112,20 @@ export default function PlayerBar() {
             dispatch(setIsPlaying(false));
           });
       }
-    }
-  }, [currentTrack, dispatch]);
-
- 
-  useEffect(() => {
-    if (!audioRef.current) return;
-    
-    if (isPlaying) {
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((error) => {
-          console.warn('Play failed:', error);
-          dispatch(setIsPlaying(false));
-        });
-      }
     } else {
-      audioRef.current.pause();
+      if (isPlaying) {
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            console.warn('Play failed:', error);
+            dispatch(setIsPlaying(false));
+          });
+        }
+      } else {
+        audioRef.current.pause();
+      }
     }
-  }, [isPlaying, dispatch]);
+  }, [currentTrack, isPlaying, dispatch]);
 
   useEffect(() => {
     if (audioRef.current) {
