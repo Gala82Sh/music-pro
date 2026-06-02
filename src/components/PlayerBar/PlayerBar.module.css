@@ -262,13 +262,14 @@
 
 .volume__progressLine::-webkit-slider-thumb {
   appearance: none;
-  width: 16px;
-  height: 16px;
-  background: #1a1a1a;
-  border: 2px solid white;
+  width: 12px;
+  height: 12px;
+  background: #ffffff;
   border-radius: 50%;
-  position: relative;
-  margin-top: -7px;
+  cursor: pointer;
+  border: none;
+  margin-top: -5px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
 }
 
 .btn {
@@ -421,4 +422,15 @@
   10% { opacity: 1; top: 10px; }
   90% { opacity: 1; top: 10px; }
   100% { opacity: 0; top: -20px; }
+}
+
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+input[type="range"]:focus {
+  outline: none;
 }
