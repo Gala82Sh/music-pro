@@ -95,40 +95,29 @@ export default function PlayerBar() {
 
  
   useEffect(() => {
-    if (!audioRef.current || !currentTrack) return;
+    if (audioRef.current) {
+      audioRef.current.volume = volume / 100;
+    }
+  }, [volume]);
 
-  
-    audioRef.current.volume = volume / 100;
+ 
+  useEffect(() => {
+    if (!audioRef.current || !currentTrack) return;
 
     const isNewTrack = audioRef.current.src !== currentTrack.track_file;
 
     if (isNewTrack) {
+     
       audioRef.current.src = currentTrack.track_file;
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            dispatch(setIsPlaying(true));
-          })
-          .catch((error) => {
-            console.warn('Playback failed:', error);
-            dispatch(setIsPlaying(false));
-          });
-      }
+      audioRef.current.play().catch(() => {});
+    } else if (isPlaying) {
+     
+      audioRef.current.play().catch(() => {});
     } else {
-      if (isPlaying) {
-        const playPromise = audioRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise.catch((error) => {
-            console.warn('Play failed:', error);
-            dispatch(setIsPlaying(false));
-          });
-        }
-      } else {
-        audioRef.current.pause();
-      }
+     
+      audioRef.current.pause();
     }
-  }, [currentTrack, isPlaying, volume, dispatch]);
+  }, [currentTrack, isPlaying]);
 
   const handleAudioError = () => {
     setAudioError(true);
