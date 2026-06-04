@@ -93,28 +93,25 @@ export default function PlayerBar() {
     dispatch(setIsPlaying(true));
   };
 
- 
+  // Эффект для громкости
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume / 100;
     }
   }, [volume]);
 
- 
+  // ЕДИНСТВЕННЫЙ ЭФФЕКТ ДЛЯ ПЛЕЕРА
   useEffect(() => {
     if (!audioRef.current || !currentTrack) return;
 
     const isNewTrack = audioRef.current.src !== currentTrack.track_file;
 
     if (isNewTrack) {
-     
       audioRef.current.src = currentTrack.track_file;
       audioRef.current.play().catch(() => {});
     } else if (isPlaying) {
-     
       audioRef.current.play().catch(() => {});
     } else {
-     
       audioRef.current.pause();
     }
   }, [currentTrack, isPlaying]);
